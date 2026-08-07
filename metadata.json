@@ -1,0 +1,6 @@
+{
+  "name": "Guna ICT Quest - Bhutan Class 10 Gamified Tutor",
+  "description": "An interactive gamified Class 10 ICT learning engine with Guna, featuring quests, Python execution, Excel tools, Mermaid diagrams, and Bhutanese cultural themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

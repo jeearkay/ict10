@@ -1,0 +1,388 @@
+@import "tailwindcss";
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+:root {
+  --color-page-bg: #FDFCF0;
+  --color-card-bg: #FFFFFF;
+  --color-text-main: #1A1A1A;
+  --color-border: #1A1A1A;
+  --color-brand-maroon: #6D071A;
+  --color-brand-gold: #FFCC33;
+  --color-text-muted: #465267;
+}
+
+.dark {
+  --color-page-bg: #0B0E17;
+  --color-card-bg: #141824;
+  --color-text-main: #F8FAFC;
+  --color-border: #2A324A;
+  --color-brand-maroon: #801026;
+  --color-brand-gold: #FCD34D;
+  --color-text-muted: #94A3B8;
+}
+
+*, ::before, ::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 350ms;
+}
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-text-main);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.app-shell {
+  background-image:
+    radial-gradient(1200px 500px at 15% -10%, rgba(255, 204, 51, 0.22), transparent 60%),
+    radial-gradient(800px 360px at 100% 0%, rgba(109, 7, 26, 0.12), transparent 65%);
+}
+
+.dark .app-shell {
+  background-image:
+    radial-gradient(1200px 500px at 15% -10%, rgba(248, 210, 78, 0.08), transparent 60%),
+    radial-gradient(900px 420px at 100% 0%, rgba(125, 16, 37, 0.18), transparent 65%);
+}
+
+.modern-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modern-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 8px 12px -4px rgba(0, 0, 0, 0.04);
+}
+
+.dark .modern-card {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 9999;
+  transform: translateY(-140%);
+  background: #1A1A1A;
+  color: #FFCC33;
+  border: 2px solid #FFCC33;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Late-night Dark Mode overrides for full app coherence & high contrast text */
+.dark .bg-\[\#FDFCF0\] {
+  background-color: #0B0E17 !important;
+}
+
+.dark .bg-white {
+  background-color: #141824 !important;
+  color: #F8FAFC !important;
+}
+
+/* Default dark text to crisp light slate in dark mode */
+.dark .text-\[\#1A1A1A\] {
+  color: #F8FAFC !important;
+}
+
+.dark .text-\[\#6D071A\],
+.dark .text-[#6D071A] {
+  color: #FCD34D !important; /* High contrast warm gold text in dark mode */
+}
+
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700,
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700 {
+  color: #F1F5F9 !important;
+}
+
+.dark .text-gray-600,
+.dark .text-gray-500,
+.dark .text-slate-600,
+.dark .text-slate-500 {
+  color: #94A3B8 !important;
+}
+
+/* Specific dark text colors mapping to bright high contrast colors in dark mode */
+.dark .text-emerald-900,
+.dark .text-emerald-800 {
+  color: #34D399 !important; /* Bright emerald */
+}
+
+.dark .text-blue-900,
+.dark .text-blue-800 {
+  color: #38BDF8 !important; /* Bright sky blue */
+}
+
+.dark .text-amber-900,
+.dark .text-amber-800 {
+  color: #FDE68A !important; /* Bright warm amber */
+}
+
+.dark .text-purple-900,
+.dark .text-purple-800 {
+  color: #D8B4FE !important; /* Bright purple */
+}
+
+.dark .text-rose-900,
+.dark .text-rose-800 {
+  color: #FDA4AF !important; /* Bright rose */
+}
+
+/* Preserving sharp dark text inside bright yellow / gold buttons, badges & containers in dark mode */
+.dark .bg-\[\#FFCC33\],
+.dark .bg-\[\#FFCC33\] *,
+.dark .bg-amber-400,
+.dark .bg-amber-400 *,
+.dark .bg-yellow-400,
+.dark .bg-yellow-400 *,
+.dark .bg-amber-300,
+.dark .bg-amber-300 *,
+.dark .bg-yellow-300,
+.dark .bg-yellow-300 *,
+.dark .bg-amber-200,
+.dark .bg-amber-200 * {
+  color: #0F172A !important;
+}
+
+/* Special case: Maroon badges or text icons inside gold containers */
+.dark .bg-\[\#FFCC33\] .text-\[\#6D071A\],
+.dark .bg-amber-400 .text-\[\#6D071A\],
+.dark .bg-yellow-400 .text-\[\#6D071A\],
+.dark .bg-[#FFCC33] .text-[#6D071A] {
+  color: #6D071A !important;
+}
+
+/* Borders & Shadows in dark mode */
+.dark .border-\[\#1A1A1A\] {
+  border-color: #2A324A !important;
+}
+
+.dark .bg-\[\#6D071A\] {
+  background-color: #580514 !important;
+}
+
+.dark .shadow-\[3px_3px_0px_0px_\#1A1A1A\],
+.dark .shadow-\[2px_2px_0px_0px_\#1A1A1A\],
+.dark .shadow-\[4px_4px_0px_0px_\#1A1A1A\],
+.dark .shadow-\[5px_5px_0px_0px_\#1A1A1A\],
+.dark .shadow-\[6px_6px_0px_0px_\#1A1A1A\],
+.dark .shadow-\[8px_8px_0px_0px_\#1A1A1A\],
+.dark .shadow-\[0px_4px_0px_0px_\#1A1A1A\] {
+  --tw-shadow-color: #000000 !important;
+}
+
+/* Native Form Options & Inputs styling in dark mode */
+.dark option {
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Light tint card backgrounds adapted for dark mode so text remains readable and professional */
+.dark .bg-amber-50,
+.dark .bg-amber-50\/80,
+.dark .bg-amber-50\/70,
+.dark .bg-amber-50\/50,
+.dark .bg-amber-100,
+.dark .bg-amber-100\/80,
+.dark .bg-yellow-50,
+.dark .bg-yellow-100 {
+  background-color: #1A1F2E !important;
+  border-color: #334155 !important;
+}
+
+.dark .bg-emerald-50,
+.dark .bg-emerald-100,
+.dark .bg-emerald-100\/85 {
+  background-color: #132722 !important;
+  border-color: #1E3A34 !important;
+}
+
+.dark .bg-blue-50,
+.dark .bg-blue-100,
+.dark .bg-sky-50,
+.dark .bg-sky-100,
+.dark .bg-cyan-50,
+.dark .bg-cyan-100 {
+  background-color: #132238 !important;
+  border-color: #1E3A5F !important;
+}
+
+.dark .bg-rose-50,
+.dark .bg-rose-100,
+.dark .bg-red-50,
+.dark .bg-red-100 {
+  background-color: #2D1519 !important;
+  border-color: #4C1D25 !important;
+}
+
+.dark .bg-indigo-50,
+.dark .bg-indigo-100,
+.dark .bg-purple-50,
+.dark .bg-purple-100 {
+  background-color: #211A30 !important;
+  border-color: #3B2E54 !important;
+}
+
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-slate-50,
+.dark .bg-slate-100,
+.dark .bg-slate-200 {
+  background-color: #141824 !important;
+  border-color: #2A324A !important;
+}
+
+/* ==========================================================================
+   KEYBOARD FOCUS STATES (ACCESSIBILITY)
+   ========================================================================== */
+:focus-visible {
+  outline: 3px solid #FFCC33 !important;
+  outline-offset: 2px !important;
+  border-radius: 6px !important;
+}
+
+/* ==========================================================================
+   STATUS BADGES CONSISTENCY
+   ========================================================================== */
+.badge-pass {
+  @apply bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 border-2 border-emerald-500 font-black px-2.5 py-0.5 rounded-full text-xs inline-flex items-center gap-1;
+}
+
+.badge-mastered {
+  @apply bg-amber-100 dark:bg-amber-950/80 text-amber-900 dark:text-amber-200 border-2 border-amber-500 font-black px-2.5 py-0.5 rounded-full text-xs inline-flex items-center gap-1;
+}
+
+.badge-progress {
+  @apply bg-sky-100 dark:bg-sky-950/80 text-sky-900 dark:text-sky-200 border-2 border-sky-500 font-black px-2.5 py-0.5 rounded-full text-xs inline-flex items-center gap-1;
+}
+
+.badge-needs-work {
+  @apply bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-200 border-2 border-rose-500 font-black px-2.5 py-0.5 rounded-full text-xs inline-flex items-center gap-1;
+}
+
+/* ==========================================================================
+   PRISM SYNTAX HIGHLIGHTING (LIGHT & DARK THEMES)
+   ========================================================================== */
+.prism-code-editor {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.prism-code-editor textarea {
+  outline: none !important;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #cbd5e1;
+}
+
+.token.keyword {
+  color: #f472b6;
+  font-weight: 700;
+}
+
+.token.builtin {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.token.boolean {
+  color: #fb923c;
+  font-weight: 700;
+}
+
+.token.number {
+  color: #facc15;
+  font-weight: 600;
+}
+
+.token.string,
+.token.char,
+.token.triple-quoted-string {
+  color: #4ade80;
+}
+
+.token.function {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.token.operator {
+  color: #f43f5e;
+  font-weight: 600;
+}
+
+.token.decorator {
+  color: #a78bfa;
+}
+
+.token.class-name {
+  color: #e879f9;
+  font-weight: 700;
+}
+
+.dark code, .dark pre {
+  color: #f8fafc !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+

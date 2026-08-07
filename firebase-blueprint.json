@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "students": {
+      "title": "Students",
+      "description": "Student user profiles and credentials info for Class 10 ICT Tutor",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "studentId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "classSection": { "type": "string" },
+        "school": { "type": "string" },
+        "role": { "type": "string" },
+        "xp": { "type": "number" },
+        "streakDays": { "type": "number" },
+        "completedLevelsCount": { "type": "number" },
+        "lastActive": { "type": "string" },
+        "unlockedBadges": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["uid", "name", "email", "role"]
+    },
+    "classroomHelpRequests": {
+      "title": "Classroom Help Requests",
+      "description": "Student help requests submitted via Stuck button and teacher responses",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentUid": { "type": "string" },
+        "studentName": { "type": "string" },
+        "studentClass": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "chapterTitle": { "type": "string" },
+        "levelTitle": { "type": "string" },
+        "query": { "type": "string" },
+        "status": { "type": "string" },
+        "teacherResponse": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["studentName", "query", "timestamp", "status"]
+    },
+    "teacherNotes": {
+      "title": "Teacher Notes",
+      "description": "Shared teacher announcements and class notes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "author": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["author", "title", "content"]
+    },
+    "activeSessions": {
+      "title": "Active Student Sessions",
+      "description": "Real-time presence tracking for students in the study room",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classSection": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "currentActivity": { "type": "string" },
+        "xp": { "type": "number" },
+        "statusMessage": { "type": "string" },
+        "lastSeenTimestamp": { "type": "number" }
+      },
+      "required": ["id", "studentName", "lastSeenTimestamp"]
+    },
+    "communityCheers": {
+      "title": "Community Cheers",
+      "description": "Short encouragement messages and cheers sent between online students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderName": { "type": "string" },
+        "recipientName": { "type": "string" },
+        "cheerText": { "type": "string" },
+        "emoji": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["senderName", "recipientName", "cheerText", "timestamp"]
+    }
+  }
+}

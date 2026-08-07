@@ -1,0 +1,18 @@
+{
+  "short_name": "ICT Quest",
+  "name": "Bhutan Class 10 ICT Quest",
+  "icons": [
+    {
+      "src": "/public/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0F172A",
+  "theme_color": "#FFCC33",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "description": "Interactive Class 10 ICT Curriculum Quest with Offline Support for Bhutanese Students"
+}
